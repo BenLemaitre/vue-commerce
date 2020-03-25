@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ mongoose.connect(
 app.use(morgan("dev")); // logs http requests
 app.use(bodyParser.json()); // parse data to proper format
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 // Required APIs
 const productRoutes = require("./routes/product");

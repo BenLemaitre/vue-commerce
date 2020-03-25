@@ -12,6 +12,8 @@ router.post("/products", upload.single("photo"), async (req, res) => {
     product.photo = req.file.location;
     product.price = req.body.price;
     product.stockQuantity = req.body.stockQuantity;
+    product.ownerId = req.body.ownerId;
+    product.categoryId = req.body.categoryId;
 
     await product.save();
 
