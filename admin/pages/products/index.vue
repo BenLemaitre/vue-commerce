@@ -106,8 +106,8 @@
 export default {
   async asyncData({ $axios }) {
     try {
-      let categories = $axios.$get("http://localhost:3000/api/categories");
-      let owners = $axios.$get("http://localhost:3000/api/owners");
+      let categories = $axios.$get("/api/categories");
+      let owners = $axios.$get("/api/owners");
 
       const [catResponse, ownerResponse] = await Promise.all([
         categories,
@@ -149,10 +149,7 @@ export default {
         data.append("categoryId", this.categoryId);
         data.append("photo", this.selectedFile, this.selectedFile.name);
 
-        let response = await this.$axios.$post(
-          "http://localhost:3000/api/products",
-          data
-        );
+        let response = await this.$axios.$post("/api/products", data);
 
         this.$router.push("/");
       } catch (err) {

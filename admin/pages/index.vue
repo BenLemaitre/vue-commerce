@@ -90,7 +90,7 @@ export default {
   // fetch data before nuxt page finished loading (good for SEO)
   async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get("http://localhost:3000/api/products");
+      let response = await $axios.$get("/api/products");
 
       return {
         products: response.products
@@ -100,9 +100,7 @@ export default {
   methods: {
     async onDeleteProduct(id, index) {
       try {
-        let response = await this.$axios.$delete(
-          `http://localhost:3000/api/products/${id}`
-        );
+        let response = await this.$axios.$delete(`/api/products/${id}`);
 
         if (response.success) {
           this.products.splice(index, 1);

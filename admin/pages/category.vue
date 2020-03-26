@@ -52,7 +52,7 @@
 export default {
   async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get("http://localhost:3000/api/categories");
+      let response = await $axios.$get("/api/categories");
 
       return {
         categories: response.categories
@@ -71,10 +71,7 @@ export default {
       try {
         let data = { type: this.type };
 
-        let response = await this.$axios.$post(
-          "http://localhost:3000/api/categories",
-          data
-        );
+        let response = await this.$axios.$post("/api/categories", data);
 
         if (response) {
           this.categories.push(data);

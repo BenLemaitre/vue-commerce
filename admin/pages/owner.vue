@@ -73,7 +73,7 @@
 export default {
   async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get("http://localhost:3000/api/owners");
+      let response = await $axios.$get("/api/owners");
 
       return {
         owners: response.owners
@@ -103,10 +103,7 @@ export default {
         data.append("about", this.about);
         data.append("photo", this.selectedFile, this.selectedFile.name);
 
-        let response = await this.$axios.$post(
-          "http://localhost:3000/api/owners",
-          data
-        );
+        let response = await this.$axios.$post("/api/owners", data);
 
         this.owners.push({ name: this.name });
       } catch (err) {

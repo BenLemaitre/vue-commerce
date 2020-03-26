@@ -11,36 +11,29 @@
               <!-- Category dropdown -->
               <div class="a-spacing-top-medium">
                 <label>Category</label>
-                <select class="a-select-option" v-model="categoryId">
+                <select class="a-select-option" v-model="product.category._id">
                   <option
                     v-for="category in categories"
                     :key="category._id"
                     :value="category._id"
-                    >{{ category.type }}</option
-                  >
+                  >{{ category.type }}</option>
                 </select>
               </div>
               <!-- Owner dropdown -->
               <div class="a-spacing-top-medium">
                 <label>Owner</label>
-                <select class="a-select-option" v-model="ownerId">
+                <select class="a-select-option" v-model="product.owner._id">
                   <option
                     v-for="owner in owners"
                     :key="owner._id"
                     :value="owner._id"
-                    >{{ owner.name }}</option
-                  >
+                  >{{ owner.name }}</option>
                 </select>
               </div>
               <!-- Title input -->
               <div class="a-spacing-top-medium">
                 <label>Title</label>
-                <input
-                  style="width: 100%"
-                  type="text"
-                  class="a-input-text"
-                  v-model="product.title"
-                />
+                <input style="width: 100%" type="text" class="a-input-text" v-model="product.title" />
               </div>
               <!-- Price input -->
               <div class="a-spacing-top-medium">
@@ -83,9 +76,7 @@
               <div class="a-spacing-top-large">
                 <span class="a-button-register">
                   <span class="a-button-inner">
-                    <span class="a-button-text" @click="onUpdateProduct"
-                      >Update Product</span
-                    >
+                    <span class="a-button-text" @click="onUpdateProduct">Update Product</span>
                   </span>
                 </span>
               </div>
@@ -102,20 +93,15 @@
 export default {
   async asyncData({ $axios, params }) {
     try {
-      let categories = $axios.$get("http://localhost:3000/api/categories");
-      let owners = $axios.$get("http://localhost:3000/api/owners");
-      let product = $axios.$get(
-        `http://localhost:3000/api/products/${params.id}`
-      );
+      let categories = $axios.$get("/api/categories");
+      let owners = $axios.$get("/api/owners");
+      let product = $axios.$get(`/api/products/${params.id}`);
 
       const [catResponse, ownerResponse, productResponse] = await Promise.all([
         categories,
         owners,
         product
       ]);
-
-      //   this.title = productResponse.product.title;
-      console.log(productResponse);
 
       return {
         categories: catResponse.categories,
@@ -124,16 +110,16 @@ export default {
       };
     } catch (err) {}
   },
+  mounted() {
+    this.title = this.product.title;
+  },
   data() {
     return {
       categoryId: null,
       ownerId: null,
-      title: "",
-      price: "",
-      description: "",
       selectedFile: null,
       filename: "",
-      stockQuantity: ""
+      title: ""
     };
   },
   methods: {
@@ -144,18 +130,19 @@ export default {
     },
     async onUpdateProduct() {
       try {
-        console.log(this.product);
         let data = new FormData();
         data.append("title", this.product.title);
         data.append("price", this.product.price);
         data.append("description", this.product.description);
         data.append("stockQuantity", this.product.stockQuantity);
-        data.append("ownerId", this.ownerId);
-        data.append("categoryId", this.categoryId);
-        data.append("photo", this.selectedFile, this.selectedFile.name);
-        console.log(data);
+        data.append("ownerId", this.product.owner._id);
+        data.append("categoryId", this.product.category._id);
+        if (this.selectedFile) {
+          data.append("photo", this.selectedFile, this.selectedFile.name);
+        }
+
         let response = await this.$axios.$put(
-          `http://localhost:3000/api/products/${this.$route.params.id}`,
+          `/api/products/${this.$route.params.id}`,
           data
         );
 
