@@ -33,10 +33,12 @@ app.use(cors());
 const productRoutes = require("./routes/product");
 const categoryRoutes = require("./routes/category");
 const ownerRoutes = require("./routes/owner");
+const userRoutes = require("./routes/auth");
 
 app.use("/api", productRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", ownerRoutes);
+app.use("/api", userRoutes);
 
 app.listen(PORT, err => {
   if (err) {
