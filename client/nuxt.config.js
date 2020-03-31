@@ -46,7 +46,8 @@ export default {
     "bootstrap-vue/nuxt",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
-    "@nuxtjs/pwa"
+    "@nuxtjs/pwa",
+    "@nuxtjs/auth"
   ],
   /*
    ** Axios module configuration
@@ -54,6 +55,10 @@ export default {
    */
   axios: {
     baseURL: URL
+  },
+
+  proxy: {
+    "/api": URL
   },
   /*
    ** Build configuration
@@ -63,5 +68,18 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            propertyName: "token"
+          },
+          logout: true
+        }
+      }
+    }
   }
 };

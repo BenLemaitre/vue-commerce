@@ -81,4 +81,34 @@ router.post("/auth/login", async (req, res) => {
   }
 });
 
+// Profile update route
+router.put("/auth/update", verifyToken, async (req, res) => {
+  try {
+    let user = await User.findOne({ email: req.body.oldEmail });
+    console.log(user);
+    if (!user) {
+      res.status(403).json({
+        success: false,
+        message: "Update failed, user not found !"
+      });
+    } else {
+      if (req.body.name) user.name = req.body.name;
+      if (req.body.email) user.email = req.body.email;
+      if (req.body.password) user.password = req.body.password;
+
+      user.save();
+
+      res.json({
+        success: true,
+        message: "User updated !"
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
 module.exports = router;
