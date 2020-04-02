@@ -11,11 +11,7 @@
 
           <div class="mainResults">
             <ul class="s-result-list">
-              <li
-                class="s-result-item celwidget"
-                v-for="product in products"
-                :key="product._id"
-              >
+              <li class="s-result-item celwidget" v-for="product in products" :key="product._id">
                 <div class="s-item-container">
                   <!-- Best Seller -->
                   <div class="a-spacing-micro">
@@ -30,36 +26,32 @@
                     <!-- Image -->
                     <div class="col-sm-3 text-center">
                       <a href="#">
-                        <img
-                          :src="product.photo"
-                          style="width: 150px"
-                          class="img-fluid"
-                        />
+                        <img :src="product.photo" style="width: 150px" class="img-fluid" />
                       </a>
                     </div>
 
                     <div class="col-sm-9">
                       <div class="a-row a-spacing-small">
                         <!-- Title Date -->
-                        <a href="#" class="a-link-normal">
+                        <nuxt-link :to="`/products/${product._id}`" class="a-link-normal">
                           <h2 class="a-size-medium">
                             {{ product.title }}
                             <span class="a-letter-space"></span>
                             <span class="a-letter-space"></span>
-                            <span class="a-size-small a-color-secondary"
-                              >Sep 3, 2019</span
-                            >
+                            <span class="a-size-small a-color-secondary">Sep 3, 2019</span>
                           </h2>
-                        </a>
+                        </nuxt-link>
                       </div>
 
                       <!-- Manufacturor -->
                       <div class="a-row a-spacing-small">
                         <span class="a-size-small a-color-secondary">by</span>
                         <span class="a-size-small a-color-secondary">
-                          <a href="#" class="a-link-normal a-text-normal">{{
+                          <a href="#" class="a-link-normal a-text-normal">
+                            {{
                             product.owner.name
-                          }}</a>
+                            }}
+                          </a>
                         </span>
                       </div>
 
@@ -71,9 +63,25 @@
                       <div class="row">
                         <div class="col-sm-7">
                           <div class="a-row a-spacing-none">
-                            <a href="#" class="a-link-normal a-text-normal"
-                              >Test</a
-                            >
+                            <a href="#" class="a-link-normal a-text-normal">Test</a>
+                          </div>
+                        </div>
+                        <!-- Ratings -->
+                        <div class="col-sm-5">
+                          <div class="a-row s-spacing-mini">
+                            <!-- Star ratings -->
+                            <no-ssr>
+                              <star-rating
+                                :rating="product.averageRating"
+                                :show-rating="false"
+                                :glow="1"
+                                :border-width="1"
+                                :rounded-corners="true"
+                                :read-only="true"
+                                :star-size="18"
+                                :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]"
+                              ></star-rating>
+                            </no-ssr>
                           </div>
                         </div>
                       </div>
@@ -85,18 +93,17 @@
                           <span class="a-color-base sx-zero-spacing">
                             <span class="sx-price sx-price-large">
                               <sup class="sx-price-currency">$</sup>
-                              <span class="sx-price-whole">{{
+                              <span class="sx-price-whole">
+                                {{
                                 product.price
-                              }}</span>
+                                }}
+                              </span>
                               <sup class="sx-price-fractional">00</sup>
                             </span>
                           </span>
                         </a>
                         <span class="a-letter-space"></span>
-                        <span
-                          class="a-size-base-plus a-color-secondary a-text-strike"
-                          >$2689.99</span
-                        >
+                        <span class="a-size-base-plus a-color-secondary a-text-strike">$2689.99</span>
                       </div>
 
                       <!-- Audible Trial -->
@@ -105,7 +112,7 @@
                           Free with Audible trial
                         </span>
                       </div>
-                      <hr /> -->
+                      <hr />-->
 
                       <!-- Other Formats -->
                       <!-- <span class="a-size-small a-color-secondary">
@@ -116,17 +123,10 @@
                           class="a-size-small a-link-normal a-text-normal"
                           >Audio CD</a
                         >
-                      </span> -->
-                      <hr />
-                    </div>
-
-                    <!-- Ratings -->
-                    <div class="col-sm-5">
-                      <div class="a-row s-spacing-mini">
-                        <!-- Star ratings -->
-                      </div>
+                      </span>-->
                     </div>
                   </div>
+                  <hr />
                 </div>
               </li>
             </ul>
@@ -138,10 +138,12 @@
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
 import FeaturedProduct from "~/components/featured-product.vue";
 
 export default {
   components: {
+    StarRating,
     FeaturedProduct
   },
   async asyncData({ $axios }) {
