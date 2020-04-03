@@ -25,8 +25,12 @@
               <nuxt-link to="/address" class="nav-a nav-a-2">
                 <div class="nav-sprite" id="nav-packard-glow-loc-icon"></div>
                 <div id="glow-ingress-block">
-                  <span class="nav-line-1" id="glow-ingress-line1">Deliver to</span>
-                  <span class="nav-line-2" id="glow-ingress-line2">California</span>
+                  <span class="nav-line-1" id="glow-ingress-line1"
+                    >Deliver to</span
+                  >
+                  <span class="nav-line-2" id="glow-ingress-line2">{{
+                    $auth.$state.user.address.city
+                  }}</span>
                 </div>
               </nuxt-link>
             </div>
@@ -35,10 +39,16 @@
           <div class="col-xl-6 col-lg-5 col-md-4 col-sm-6 p-0">
             <div class="nav-fill">
               <div class="nav-shop">
-                <nuxt-link to="/history" class="nav-a nav-a-2 nav-single-row-link">
+                <nuxt-link
+                  to="/history"
+                  class="nav-a nav-a-2 nav-single-row-link"
+                >
                   <span class="nav-line-2">
                     Browsing History
-                    <span class="nav-icon nav-arrow" style="visibility: visible"></span>
+                    <span
+                      class="nav-icon nav-arrow"
+                      style="visibility: visible"
+                    ></span>
                   </span>
                 </nuxt-link>
               </div>
@@ -57,7 +67,11 @@
           <!-- Accounts, order, cart -->
           <div class="col-xl-4 col-lg-5 col-md-6 col-sm-4 p-0">
             <div class="nav-tools">
-              <a href="#" id="icp-nav-flyout" class="nav-a nav-a-2 icp-link-style-2">
+              <a
+                href="#"
+                id="icp-nav-flyout"
+                class="nav-a nav-a-2 icp-link-style-2"
+              >
                 <span class="icp-nav-link-inner">
                   <span class="nav-line-1">
                     <span class="icp-nav-globe-img-2"></span>
@@ -66,7 +80,10 @@
 
                   <span class="nav-line-2">
                     &nbsp;
-                    <span class="nav-icon nav-arrow" style="visibility: visible"></span>
+                    <span
+                      class="nav-icon nav-arrow"
+                      style="visibility: visible"
+                    ></span>
                   </span>
                 </span>
               </a>
@@ -94,7 +111,10 @@
                   <span class="nav-line-1">Hello, Sign in</span>
                   <span class="nav-line-2">
                     Account &amp; Lists
-                    <span class="nav-icon nav-arrow" style="visibility: visible"></span>
+                    <span
+                      class="nav-icon nav-arrow"
+                      style="visibility: visible"
+                    ></span>
                   </span>
                 </nuxt-link>
               </template>
@@ -107,7 +127,12 @@
                 <span aria-hidden="true" class="nav-line-1"></span>
                 <span aria-hidden="true" class="nav-line-2">Cart</span>
                 <span class="nav-cart-icon nav-sprite"></span>
-                <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0">0</span>
+                <span
+                  id="nav-cart-count"
+                  aria-hidden="true"
+                  class="nav-cart-count nav-cart-0"
+                  >0</span
+                >
               </nuxt-link>
             </div>
           </div>

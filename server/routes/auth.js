@@ -35,7 +35,10 @@ router.post("/auth/signup", async (req, res) => {
 // Profile route
 router.get("/auth/user", verifyToken, async (req, res) => {
   try {
-    let foundUser = await User.findOne({ _id: req.decoded._id });
+    let foundUser = await User.findOne({ _id: req.decoded._id })
+      .populate("address")
+      .exec();
+
     if (foundUser) {
       res.json({
         success: true,
@@ -84,8 +87,10 @@ router.post("/auth/login", async (req, res) => {
 // Profile update route
 router.put("/auth/update", verifyToken, async (req, res) => {
   try {
-    let user = await User.findOne({ email: req.body.oldEmail });
-    console.log(user);
+    let user = await User.findOne({ email: req.body.oldEmail }).populate(
+      "address"
+    );
+
     if (!user) {
       res.status(403).json({
         success: false,

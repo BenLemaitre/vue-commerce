@@ -7,7 +7,9 @@
         <ul class="a-unordered-list a-horizontal a-size-small">
           <li>
             <span class="a-list-item">
-              <a href="#" class="a-link-normal a-color-tertiary">{{ product.category.type }}</a>
+              <a href="#" class="a-link-normal a-color-tertiary">{{
+                product.category.type
+              }}</a>
             </span>
           </li>
           <li>
@@ -15,7 +17,9 @@
           </li>
           <li>
             <span class="a-list-item">
-              <a href="#" class="a-link-normal a-color-tertiary">{{ product.title }}</a>
+              <a href="#" class="a-link-normal a-color-tertiary">{{
+                product.title
+              }}</a>
             </span>
           </li>
         </ul>
@@ -43,7 +47,11 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                       <div class="smallAuthorImageContainer">
                         <a href="#">
-                          <img :src="product.owner.photo" alt class="img-fluid" />
+                          <img
+                            :src="product.owner.photo"
+                            alt
+                            class="img-fluid"
+                          />
                         </a>
                       </div>
                     </div>
@@ -88,7 +96,8 @@
                     class="fas fa-chevron-down"
                     style="font-size: 8px !important; color: #555 !important;"
                   ></i>
-                </a> (Company)
+                </a>
+                (Company)
               </div>
               <div class="reviewGroup">
                 <no-ssr>
@@ -100,7 +109,28 @@
                     :rounded-corners="true"
                     :read-only="true"
                     :star-size="18"
-                    :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]"
+                    :star-points="[
+                      23,
+                      2,
+                      14,
+                      17,
+                      0,
+                      19,
+                      10,
+                      34,
+                      7,
+                      50,
+                      23,
+                      43,
+                      38,
+                      50,
+                      36,
+                      34,
+                      46,
+                      19,
+                      31,
+                      17
+                    ]"
                   ></star-rating>
                 </no-ssr>
                 <hr style="margin-top: 10px;" />
@@ -165,7 +195,9 @@
               </div>
               <!-- Description -->
               <div class="bookDescription">
-                <div class="bookDescriptionInner">{{ product.description }}</div>
+                <div class="bookDescriptionInner">
+                  {{ product.description }}
+                </div>
               </div>
 
               <!-- Product specs -->
@@ -195,7 +227,11 @@
                   <div class="clearFix">
                     <div class="float-left">
                       <form>
-                        <input type="radio" id="test1" name="radio-group checked" />
+                        <input
+                          type="radio"
+                          id="test1"
+                          name="radio-group checked"
+                        />
                         <label for="test1">Buy Now</label>
                       </form>
                     </div>
@@ -203,7 +239,8 @@
                     <div class="float-right">
                       <span
                         class="a-size-medium a-color-price offer-price a-text-normal"
-                      >${{ product.price }}</span>
+                        >${{ product.price }}</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -229,23 +266,37 @@
                   <div class="a-section a-spacing-none">
                     <span class="a-size-medium a-color-success">In Stock</span>
                   </div>
-                  <div class="a-section a-spacing-mini">Ships from and sold by Amazon</div>
+                  <div class="a-section a-spacing-mini">
+                    Ships from and sold by Amazon
+                  </div>
                 </div>
                 <div class="a-section">
                   <div class="a-button-stack">
-                    <span class="a-spacing-small a-button-primary a-button-icon">
+                    <span
+                      class="a-spacing-small a-button-primary a-button-icon"
+                    >
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-cart"></i>
-                        <input type="submit" name="submit.add-to-cart" class="a-button-input" />
+                        <input
+                          type="submit"
+                          name="submit.add-to-cart"
+                          class="a-button-input"
+                        />
                         <span class="a-button-text">Add to Cart</span>
                       </span>
                     </span>
                   </div>
                   <div class="a-button-stack">
-                    <span class="a-spacing-small a-button-primary a-button-icon">
+                    <span
+                      class="a-spacing-small a-button-primary a-button-icon"
+                    >
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-buynow"></i>
-                        <input type="submit" name="submit.add-to-cart" class="a-button-input" />
+                        <input
+                          type="submit"
+                          name="submit.add-to-cart"
+                          class="a-button-input"
+                        />
                         <span class="a-button-text">Buy Now</span>
                       </span>
                     </span>
@@ -353,7 +404,7 @@ export default {
         product,
         reviews
       ]);
-      console.log(productResponse);
+
       return {
         product: productResponse.product,
         reviews: reviewsResponse.reviews
