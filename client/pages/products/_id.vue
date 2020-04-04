@@ -7,9 +7,11 @@
         <ul class="a-unordered-list a-horizontal a-size-small">
           <li>
             <span class="a-list-item">
-              <a href="#" class="a-link-normal a-color-tertiary">{{
+              <a href="#" class="a-link-normal a-color-tertiary">
+                {{
                 product.category.type
-              }}</a>
+                }}
+              </a>
             </span>
           </li>
           <li>
@@ -17,9 +19,11 @@
           </li>
           <li>
             <span class="a-list-item">
-              <a href="#" class="a-link-normal a-color-tertiary">{{
+              <a href="#" class="a-link-normal a-color-tertiary">
+                {{
                 product.title
-              }}</a>
+                }}
+              </a>
             </span>
           </li>
         </ul>
@@ -47,11 +51,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                       <div class="smallAuthorImageContainer">
                         <a href="#">
-                          <img
-                            :src="product.owner.photo"
-                            alt
-                            class="img-fluid"
-                          />
+                          <img :src="product.owner.photo" alt class="img-fluid" />
                         </a>
                       </div>
                     </div>
@@ -195,9 +195,7 @@
               </div>
               <!-- Description -->
               <div class="bookDescription">
-                <div class="bookDescriptionInner">
-                  {{ product.description }}
-                </div>
+                <div class="bookDescriptionInner">{{ product.description }}</div>
               </div>
 
               <!-- Product specs -->
@@ -227,11 +225,7 @@
                   <div class="clearFix">
                     <div class="float-left">
                       <form>
-                        <input
-                          type="radio"
-                          id="test1"
-                          name="radio-group checked"
-                        />
+                        <input type="radio" id="test1" name="radio-group checked" />
                         <label for="test1">Buy Now</label>
                       </form>
                     </div>
@@ -239,8 +233,7 @@
                     <div class="float-right">
                       <span
                         class="a-size-medium a-color-price offer-price a-text-normal"
-                        >${{ product.price }}</span
-                      >
+                      >${{ product.price }}</span>
                     </div>
                   </div>
                 </div>
@@ -266,37 +259,23 @@
                   <div class="a-section a-spacing-none">
                     <span class="a-size-medium a-color-success">In Stock</span>
                   </div>
-                  <div class="a-section a-spacing-mini">
-                    Ships from and sold by Amazon
-                  </div>
+                  <div class="a-section a-spacing-mini">Ships from and sold by Amazon</div>
                 </div>
                 <div class="a-section">
-                  <div class="a-button-stack">
-                    <span
-                      class="a-spacing-small a-button-primary a-button-icon"
-                    >
+                  <div class="a-button-stack" @click="addProductToCart(product)">
+                    <span class="a-spacing-small a-button-primary a-button-icon">
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-cart"></i>
-                        <input
-                          type="submit"
-                          name="submit.add-to-cart"
-                          class="a-button-input"
-                        />
+                        <input type="submit" name="submit.add-to-cart" class="a-button-input" />
                         <span class="a-button-text">Add to Cart</span>
                       </span>
                     </span>
                   </div>
                   <div class="a-button-stack">
-                    <span
-                      class="a-spacing-small a-button-primary a-button-icon"
-                    >
+                    <span class="a-spacing-small a-button-primary a-button-icon">
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-buynow"></i>
-                        <input
-                          type="submit"
-                          name="submit.add-to-cart"
-                          class="a-button-input"
-                        />
+                        <input type="submit" name="submit.add-to-cart" class="a-button-input" />
                         <span class="a-button-text">Buy Now</span>
                       </span>
                     </span>
@@ -387,6 +366,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import StarRating from "vue-star-rating";
 import ReviewSection from "~/components/review-section";
 
@@ -412,6 +392,9 @@ export default {
     } catch (err) {
       console.log(err);
     }
+  },
+  methods: {
+    ...mapActions(["addProductToCart"])
   }
 };
 </script>
