@@ -26,12 +26,12 @@
                 <div class="nav-sprite" id="nav-packard-glow-loc-icon"></div>
                 <div id="glow-ingress-block">
                   <span class="nav-line-1" id="glow-ingress-line1">Deliver to</span>
-                  <span class="nav-line-2" id="glow-ingress-line2" v-if="$auth.$state.loggedIn">
-                    {{
-                    $auth.$state.user.address.city
-                    }}
-                  </span>
-                  <span class="nav-line-2" id="glow-ingress-line2" v-else>Enter Address</span>
+                  <span
+                    class="nav-line-2"
+                    id="glow-ingress-line2"
+                    v-if="$auth.$state.loggedIn"
+                  >{{ $auth.$state.user.address.city }}</span>
+                  <span class="nav-line-2" id="glow-ingress-line2" v-else>{{ userAddress }}</span>
                 </div>
               </nuxt-link>
             </div>
@@ -135,7 +135,7 @@ export default {
   },
   data() {
     return {
-      userAddress: "Enter your address"
+      userAddress: "Enter address"
     };
   },
   computed: {

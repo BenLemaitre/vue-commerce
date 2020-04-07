@@ -105,25 +105,6 @@
                         <span class="a-letter-space"></span>
                         <span class="a-size-base-plus a-color-secondary a-text-strike">$2689.99</span>
                       </div>
-
-                      <!-- Audible Trial -->
-                      <!-- <div class="a-row a-spacing-none">
-                        <span class="a-size-small a-color-secondary">
-                          Free with Audible trial
-                        </span>
-                      </div>
-                      <hr />-->
-
-                      <!-- Other Formats -->
-                      <!-- <span class="a-size-small a-color-secondary">
-                        Other Formats:
-                        <span class="a-letter-space"></span>
-                        <a
-                          href="#"
-                          class="a-size-small a-link-normal a-text-normal"
-                          >Audio CD</a
-                        >
-                      </span>-->
                     </div>
                   </div>
                   <hr />
