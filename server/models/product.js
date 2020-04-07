@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongooseAlgolia = require("mongoose-algolia");
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema(
@@ -10,15 +11,15 @@ const ProductSchema = new Schema(
     photo: String,
     price: Number,
     stockQuantity: Number,
-    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }]
+    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
   {
     toObject: { virtuals: true },
-    toJSON: { virtuals: true }
+    toJSON: { virtuals: true },
   }
 );
 
-ProductSchema.virtual("averageRating").get(function() {
+ProductSchema.virtual("averageRating").get(function () {
   if (this.reviews.length > 0) {
     let sum = this.reviews.reduce((total, review) => {
       return total + review.rating;
@@ -30,4 +31,21 @@ ProductSchema.virtual("averageRating").get(function() {
   return 0;
 });
 
-module.exports = mongoose.model("Product", ProductSchema);
+ProductSchema.plugin(mongooseAlgolia, {
+  appId: process.env.ALGOLIA_APP_ID,
+  apiKey: process.env.ALGOLIA_SECRET_KEY,
+  indexName: process.env.ALGOLIA_INDEX,
+  selector: "title _id photo description price rating averageRating owner",
+  populate: {
+    path: "owner reviews",
+  },
+  debug: true,
+});
+
+let Model = mongoose.model("Product", ProductSchema);
+Model.SyncToAlgolia();
+Model.SetAlgoliaSettings({
+  searchableAttributes: ["title"],
+});
+
+module.exports = Model;
